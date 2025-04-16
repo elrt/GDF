@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDFun DL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: -35px;
+            right: 0;
+            background: rgba(70, 130, 180, 0.2);
+            color: #4682b4;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-btn:hover {
+            background: rgba(70, 130, 180, 0.4);
+            color: #ffffff;
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .list-item {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid #4682b4;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .list-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #5f9ea0;
+        }
+
+        .item-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4682b4;
+            min-width: 40px;
+        }
+
+        .item-content {
+            flex-grow: 1;
+        }
+
+        .item-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .item-description {
+            font-size: 14px;
+            color: #aaaaaa;
+            line-height: 1.5;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: rgba(70, 130, 180, 0.2);
+            color: #4682b4;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+
+        .action-btn:hover {
+            background: rgba(70, 130, 180, 0.4);
+            color: #ffffff;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #4682b4;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            background: #5f9ea0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-number {
+                margin-bottom: 10px;
+            }
+            
+            .item-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Кнопка возврата на главную -->
+        <button class="back-btn" id="backButton">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            На главную
+        </button>
+        
+        <h1>Демон Лист</h1>
+        
+        <div class="list">
+            <div class="list-item">
+                <div class="item-number">01</div>
+                <div class="item-content">
+                    <div class="item-title"> None</div>
+                    <div class="item-description">все в ваших руках! создавайте сложные уровни и они попадут сюда (с прохождением)</div>
+                </div>
+                <div class="item-actions">
+                    <button class="action-btn">Showcase</button>
+                    
+                </div>
+            </div>
+            
+           
+    <button class="floating-btn"></button>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.list-item');
+            
+            items.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+            
+          
+            document.querySelector('.floating-btn').addEventListener('click', () => {
+                alert('Nothing here :p');
+            });
+            
+
+            document.getElementById('backButton').addEventListener('click', () => {
+
+                window.location.href = 'index.html'; 
+                
+         
+                document.body.style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                 }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
